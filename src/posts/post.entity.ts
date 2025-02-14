@@ -1,7 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { PostType } from './enums/post-type.enum';
 import { postStatus } from './enums/post-status.enum';
 import { CreatePostMetaOptionsDto } from '../meta-options/dtos/create-post-meta-option.dto';
+import { MetaOption } from 'src/meta-options/meta-option.entity';
 
 @Entity()
 export class Post {
@@ -66,5 +67,14 @@ export class Post {
 
     // Work on these in lecture on relationships
     tags?: string[];
-    metaOptions?: CreatePostMetaOptionsDto[];
+
+    @OneToOne(()=>MetaOption)
+    @JoinColumn() //Now when you use join column decorator with 1 to 1 relationship, you use it only on the one side of relationship.
+    metaOptions?: MetaOption[];
+    // metaOptions?: CreatePostMetaOptionsDto[];
+
+    /**
+     * join column table is responsible for creating a column inside your entity table, and
+     * wherever you use this join column, that particular entity table would actually get the relationship
+     */
 }
