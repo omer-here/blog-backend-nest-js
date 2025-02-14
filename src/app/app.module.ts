@@ -8,6 +8,8 @@ import { PostsModule } from 'src/posts/posts.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from 'src/auth/auth.module';
 import { User } from 'src/users/user.entity';
+import { TagsModule } from 'src/tags/tags.module';
+import { MetaOptionsModule } from 'src/meta-options/meta-options.module';
 
 
 // although we can generate the module and add it automatically by using nest generate module MODULE_NAME but for this
@@ -20,7 +22,8 @@ import { User } from 'src/users/user.entity';
     inject: [],
     useFactory: ()=>({      
       type: 'postgres',
-      entities: [User],
+      // entities: [User], //here we add entities manually
+      autoLoadEntities: true, //it auto load entities
       synchronize: true, //It is because of this particular setting that this synchronization between Nestjs application as well as Postgres database is happening automatically.
       port: 5432,
       username: 'postgres',
@@ -29,6 +32,8 @@ import { User } from 'src/users/user.entity';
       database: 'nestjs-blog',
       }),
     }),
+    TagsModule,
+    MetaOptionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
