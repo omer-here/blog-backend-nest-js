@@ -20,6 +20,7 @@ async function bootstrap() {
 
   //npm run doc //for generating compodoc
   //npm i typeorm@0.3.20 @nestjs/typeorm@10.0.2 pg@8.11.5 --legacy-peer-deps
+  //npm i @nestjs/config@3.2.2 --legacy-peer-deps //for installing nest config
 
   // Create the swagger configuration
   const config = new DocumentBuilder()

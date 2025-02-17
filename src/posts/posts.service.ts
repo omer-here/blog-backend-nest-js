@@ -44,34 +44,28 @@ export class PostsService {
         ...createPostDto,
         metaOptions: metaOptions ? [metaOptions] : [], // Set metaOptions to an array if they exist, or empty array if null
       });
-    
-      // If metaOptions exist, assign them to the post
-      if (metaOptions) {
-        post.metaOptions = [metaOptions]; // Wrap in an array if metaOptions exists
-      }
-    
+
       // Ensure you're using save, not update
       return await this.postsRepository.save(post);
     }
     
 
-    public findAll(userId: string) {
-        const user = this.usersService.findOneById(userId);
+    public async findAll(userId: string) {
+    // find all posts
+    let posts = await this.postsRepository.find({
+      relations: {
+        metaOptions: true,
+      },
+    });
 
-        return [
-          {
-            user: user,
-            title: 'Test Tile',
-            content: 'Test Content',
-          },
-          {
-            user: user,
-            title: 'Test Tile 2',
-            content: 'Test Content 2',
-          },
-        ];
+    return posts;
     }
 
-    
+    public async delete (id: number){
+      //Find the post
+      //Deleting the post
+      //Delete the meta options
+      //Confirmation
+    }
 
 }
