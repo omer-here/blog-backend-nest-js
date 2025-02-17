@@ -68,6 +68,8 @@ export class Post {
     // Work on these in lecture on relationships
     tags?: string[];
 
+    // @OneToOne(()=>MetaOption, { cascade: ['remove', 'insert'] })
+    // @OneToOne(()=>MetaOption, { cascade: true }) // cascade true will work for all operations
     @OneToOne(()=>MetaOption)
     @JoinColumn() //Now when you use join column decorator with 1 to 1 relationship, you use it only on the one side of relationship.
     metaOptions?: MetaOption[];
