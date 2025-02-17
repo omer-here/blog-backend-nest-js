@@ -31,7 +31,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       // entities: [User], //here we add entities manually
       autoLoadEntities: true, //it auto load entities
       synchronize: true, //It is because of this particular setting that this synchronization between Nestjs application as well as Postgres database is happening automatically.
-      port: +configService.get('DATABASE_PORT'),
+      port: +configService.get('DATABASE_PORT'), //what this + does it converts to int type
       username: configService.get('DATABASE_USERNAME'),
       password: configService.get('DATABASE_PASSWORD'),
       host: configService.get('DATABASE_HOST'),
