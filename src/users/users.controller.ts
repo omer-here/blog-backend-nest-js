@@ -22,7 +22,7 @@ export class UserController {
     ){}
 
     //mandatory params should be listed first then optional ones: /:id/:optional?
-    @Get('/:id')
+    @Get('/:id/{:optional}')
     @ApiOperation({
         summary: 'Fetches a list of registered users on the application.'
       })
